@@ -1,0 +1,34 @@
+<div class="container text-center top-buffer">
+	<h3><%= t(:'Categories') %></h3>
+	
+	<div class="row top-buffer">
+
+		<% @categories.take(3).each do |cat| %>
+			<div class="col-lg-4">
+				<ul class="list-group card">
+					<li class="list-group-item active"><%= t(cat[:name]) %></li>
+					<% Place.where(category_id: cat[:id]).each do |place| %>
+						<%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+	</div>
+
+	<div class="row top-buffer">
+
+		<% @categories.drop(3).each do |cat| %>
+			<div class="col-lg-4">
+				<ul class="list-group card">
+					<li class="list-group-item active"><%= t(cat[:name]) %></li>
+					<% Place.where(category_id: cat[:id]).each do |place| %>
+						<%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+	</div>
+
+</div>

@@ -1,0 +1,24 @@
+<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+<div id="map" ></div>
+
+<script type="text/javascript">
+  ymaps.ready(function() {
+
+    var myMap = new ymaps.Map("map", {
+      center: [55.76, 37.64],
+      zoom: 10
+    });
+
+    <% Place.find_each do |pl| %>
+
+    	var myPlacemark = new ymaps.Placemark([<%= pl.latitude %>, <%= pl.longitude %>], {
+        	                                	balloonContentHeader: '<%= link_to pl[:name], place_path(pl.id) %>',
+                                          	balloonContentBody: '<%= pl.address %>'
+                                        	});
+		
+    	myMap.geoObjects.add(myPlacemark);
+
+    <% end %>
+  });
+</script>

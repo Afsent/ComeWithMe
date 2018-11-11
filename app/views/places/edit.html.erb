@@ -1,0 +1,9 @@
+<div class="container">
+	<%= simple_form_for(@place, html: { class: 'form-vertical' }) do |f| %>
+		<%= f.input :name, label: t(:'Name')%>
+    <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name), :prompt => t(:'Select category')) %>
+    <%= f.input :address, label: t(:'Address') %>
+    <%= f.input :description, label: t(:'Description')%>
+  	<%= f.submit t(:'Edit'), html: { class: 'btn btn-primary' } %>
+	<% end %>
+</div>

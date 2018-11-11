@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: sadgs
+  category: MyStsdsgdgsaring
+  description: MySdgtring
+  address: MyStridgng
+
+two:
+  name: MyStri42ng
+  category: MySweftring
+  description: MySvtring
+  address: MyStriffng

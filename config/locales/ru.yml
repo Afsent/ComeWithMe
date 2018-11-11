@@ -1,0 +1,58 @@
+ru:
+  'Post comment': 'Отправить комментарий'
+  'Reply': 'Ответить'
+  'Post Reply': 'Ответить'
+  'No': 'Нет'
+  'comments': 'комментарий(ев)'
+  'to see and post comments.': 'чтобы смотреть и оставлять комментарии.'
+  'Categories': 'Категории'
+  'Name': 'Название'
+  'Description': 'Описание'
+  'Edit': 'Изменить'
+  "'s places": ' места'
+  'Sigthseenig': 'Достопримечательности'
+  'Sports': 'Спорт'
+  'Shopping': 'Покупки'
+  'Food': 'Еда'
+  'Education': 'Образование'
+  'Transport': 'Транспорт'
+  'All places': 'Все места'
+  'Add a new place': 'Добавить новое место'
+  'Select category': 'Выбрать категорию'
+  'Address': 'Адрес'
+  'lon:': 'Долгота:'
+  'lat:': 'Широта:'
+  'Sign out': 'Выйти'
+  'Sign up': 'Зарегистрироваться'
+  'Sign in': 'Войти'
+  'Hello,': 'Здравствуйте,'
+  'My places': 'Мои места'
+  'Forgot your password?': 'Забыли пароль?'
+  'Send me reset password instructions': 'Отправить инструкции по изменнеию пароля'
+  '6 characters minimum': 'минимум 6 символов'
+  'Are you sure?': 'Вы уверены?'
+  'Comment posted!': 'Комментарий сохранён!'
+  'Error posting comment!': 'Ошибка сохранения комментария'
+  'Place was successfully deleted!': 'Место удалено!'
+  'Place was successfully created!': 'Место добавлено!'
+  'Place was successfully edited!': 'Место изменено!'
+  activerecord:
+    errors:
+      models:
+        place:
+          attributes:
+            address:
+              blank: 'Адрес не может быть пустым'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid: 'Неверный email'
+              blank: 'Введите email'
+            password:
+              too_short: 'Некорректный пароль'
+              blank: 'Введите пароль'
+            password_confirmation:
+              confirmation: 'Введенные пароли не совпадают'
