@@ -10,9 +10,10 @@
 
     var myPlacemark = new ymaps.Placemark([<%= @place.latitude %>, <%= @place.longitude %>], {
         	                                balloonContentHeader: '<%= @place.name %>',
-                                          balloonContentBody: '<%= @place.address %>'
+                                          balloonContentBody: '<%= @place.address %>',
+        balloonContentFooter: '<%= @place.date %>'
                                         });
-		
+
     myMap.geoObjects.add(myPlacemark);
 
   });

@@ -1,10 +1,17 @@
-<h1><%= t(:'Add a new place') %></h1>
 <div class="container">
-	<%= simple_form_for(@place, html: { class: 'form-vertical' }) do |f| %>
-		<%= f.input :name, label: t(:'Name') %>
-		<%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name), :prompt => t(:'Select category')) %>
-		<%= f.input :address, label: t(:'Address') %>
-  	<%= f.input :description, label: t(:'Description') %>
-  	<%= f.submit t(:'Add a new place'), html: { class: 'btn btn-primary' } %>
-	<% end %>
+  <h1 class="text_center"><%= t(:'Add a new place') %></h1>
+  <div class="container">
+    <%= simple_form_for(@place, html: {class: 'form-vertical'}) do |f| %>
+      <%= f.input :name, label: t(:'Name'), :required => true %>
+      <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name), :prompt => t(:'Select category'), :required => true) %>
+      <div>
+        <br>
+        <%= f.label 'Дата и время мероприятия', :required => true %>
+        <%= f.datetime_field :date, min: Date.today, :required => true, :step => 900 %>
+      </div>
+      <%= f.input :address, label: t(:'Address'), :required => true %>
+      <%= f.input :description, label: t(:'Description') %>
+      <%= f.submit t(:'Add a new place'), html: {class: 'btn btn-primary'} %>
+    <% end %>
+  </div>
 </div>

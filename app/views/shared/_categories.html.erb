@@ -1,35 +1,38 @@
 <div class="container text-center top-buffer">
-	<h3><%= t(:'Categories') %></h3>
-	
-	<div class="row top-buffer">
+  <h1><%= t(:'Categories') %></h1>
 
-		<% @categories.take(3).each do |cat| %>
-			<div class="col-lg-4">
-				<ul class="list-group card">
-					<li class="list-group-item active"><%= t(cat[:name]) %></li>
-					<% Place.where(category_id: cat[:id]).each do |place| %>
-						<%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
-					<% end %>
-				</ul>
-			</div>
-		<% end %>
+  <div class="row top-buffer">
+    <% @categories.take(3).each do |cat| %>
+      <div class="col-lg-4">
+        <ul class="list-group card">
+          <li class="list-group-item active"><%= t(cat[:name]) %></li>
+          <% Place.where(category_id: cat[:id]).each do |place| %>
+            <% if DateTime.now.to_date.to_s < place.date.to_s %>
+              <%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-	</div>
+  </div>
 
-	<div class="row top-buffer">
+  <div class="row top-buffer">
 
-		<% @categories.take(6).drop(3).each do |cat| %>
-			<div class="col-lg-4">
-				<ul class="list-group card">
-					<li class="list-group-item active"><%= t(cat[:name]) %></li>
-					<% Place.where(category_id: cat[:id]).each do |place| %>
-						<%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
-					<% end %>
-				</ul>
-			</div>
-		<% end %>
+    <% @categories.take(6).drop(3).each do |cat| %>
+      <div class="col-lg-4">
+        <ul class="list-group card">
+          <li class="list-group-item active"><%= t(cat[:name]) %></li>
+          <% Place.where(category_id: cat[:id]).each do |place| %>
+            <% if DateTime.now.to_date.to_s < place.date.to_s %>
+              <%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-	</div>
+  </div>
 
   <div class="row top-buffer">
 
@@ -38,14 +41,14 @@
         <ul class="list-group card">
           <li class="list-group-item active"><%= t(cat[:name]) %></li>
           <% Place.where(category_id: cat[:id]).each do |place| %>
-            <%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+            <% if DateTime.now.to_date.to_s < place.date.to_s %>
+              <%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+            <% end %>
           <% end %>
         </ul>
       </div>
     <% end %>
 
   </div>
-
-
 
 </div>

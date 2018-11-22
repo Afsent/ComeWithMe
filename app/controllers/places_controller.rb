@@ -1,12 +1,12 @@
 class PlacesController < ApplicationController
-	before_action :authenticate_user!, except: %i[index categories show]
+  before_action :authenticate_user!, except: %i[index categories show]
   before_action :find_place, only: %i[show edit update destroy]
 
   def index
   end
 
   def categories
-    @categories = Category.all.map { |e| { id: e.id, name: e.name } }
+    @categories = Category.all.map {|e| {id: e.id, name: e.name}}
   end
 
   def show
@@ -16,13 +16,13 @@ class PlacesController < ApplicationController
 
   def destroy
     @place.destroy
-    logger.debug 'Place destroyed'
-    flash[:notice] = "Place was successfully deleted!"
+    logger.debug 'Место удалено'
+    flash[:notice] = "Место успешно удалено!"
     redirect_to listPlaces_path
   end
 
   def new_place
-  	@place = current_user.places.build
+    @place = current_user.places.build
   end
 
   def create
@@ -34,12 +34,12 @@ class PlacesController < ApplicationController
     logger.debug @place.valid?
     logger.debug @place.errors.full_messages
     if @place.save
-      logger.debug 'Saved new place'
-      flash[:success] = "Place was successfully created!"
+      logger.debug 'Сохранено новое место'
+      flash[:success] = "Место было успешно создано!"
       redirect_to @place
     else
-      logger.debug 'Did not save new place'
-      flash.now[:error] = @place.errors.full_messages.first
+      logger.debug 'Не сохранили новое место'
+      flash.now[:error] = "Заполните обязательные поля"
       render :new_place
     end
   end
@@ -50,7 +50,7 @@ class PlacesController < ApplicationController
 
   def update
     if @place.update_attributes(place_params)
-      flash[:success] = "Place was successfully edited!"
+      flash[:success] = "Место было успешно отредактировано!"
       redirect_to @place
     else
       flash.now[:error] = @place.errors.full_messages.first
@@ -59,13 +59,13 @@ class PlacesController < ApplicationController
   end
 
   def list_places
-    @categories = Category.all.map { |e| { id: e.id, name: e.name } }
+    @categories = Category.all.map {|e| {id: e.id, name: e.name}}
   end
 
   private
 
   def place_params
-    params.require(:place).permit(:name, :description, :category_id, :address)
+    params.require(:place).permit(:name, :date, :description, :category_id, :address)
   end
 
   def find_place

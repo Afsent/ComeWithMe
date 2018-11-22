@@ -7,11 +7,11 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        flash[:success] = "Comment posted!"
+        flash[:success] = "Комментарий отправлен!"
         make_child_comment
         format.html {redirect_back(fallback_location: root_path)}
       else
-        flash[:error] = "Error posting comment!"
+        flash[:error] = "Ошибка отправки комментария!"
         format.html {redirect_back(fallback_location: root_path)}
       end
     end
@@ -19,9 +19,8 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    logger.debug 'Place destroyed'
-    flash[:notice] = "Place was successfully deleted!"
-    redirect_to listPlaces_path
+    logger.debug 'Место разрушено'
+    flash[:notice] = "Место успешно удалено!"
   end
 
   private

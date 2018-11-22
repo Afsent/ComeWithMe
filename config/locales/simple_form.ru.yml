@@ -3,7 +3,7 @@ ru:
     "yes": 'Yes'
     "no": 'No'
     required:
-      text: 'обязательно'
+      text: 'Обязательно'
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
@@ -17,9 +17,9 @@ ru:
         password_confirmation: 'Подтверждение пароля'
       user:
         new:
-          email: 'Введите E-mail.'
+          email: 'Введите E-mail'
         edit:
-          email: 'Введите E-mail.'
+          email: 'Введите E-mail'
     hints:
       defaults:
         username: 'Пользователь уже зарегистрирован.'

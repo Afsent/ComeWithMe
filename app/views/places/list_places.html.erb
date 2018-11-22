@@ -1,35 +1,80 @@
-<h1><%= current_user.email %><%= t(:"'s places") %></h1>
+<h3 class="text_center"><i><strong><%= current_user.email %></strong></i>, здесь вы можете найти созданные вами места.
+</h3>
 <div class="container text-center top-buffer">
-	<h3><%= t(:'Categories') %></h3>
-	
-	<div class="row top-buffer">
+  <h3><%= t(:'Categories') %></h3>
 
-		<% @categories.take(3).each do |cat| %>
-			<div class="col-lg-4">
-				<ul class="list-group card">
-					<li class="list-group-item active"><%= t(cat[:name]) %></li>
-					<% Place.where({ category_id: cat[:id], user_id: current_user.id }).each do |place| %>
-						<%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
-					<% end %>
-				</ul>
-			</div>
-		<% end %>
+  <div class="row top-buffer">
 
-	</div>
+    <% @categories.take(3).each do |cat| %>
+      <div class="col-lg-4">
+        <ul class="list-group card">
+          <li class="list-group-item active"><%= t(cat[:name]) %></li>
+          <% Place.where({category_id: cat[:id], user_id: current_user.id}).each do |place| %>
+            <% if DateTime.now.to_date.to_s < place.date.to_s %>
+              <%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-	<div class="row top-buffer">
+  </div>
 
-		<% @categories.drop(3).each do |cat| %>
-			<div class="col-lg-4">
-				<ul class="list-group card">
-					<li class="list-group-item active"><%= t(cat[:name]) %></li>
-					<% Place.where({ category_id: cat[:id], user_id: current_user.id }).each do |place| %>
-						<%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
-					<% end %>
-				</ul>
-			</div>
-		<% end %>
+  <div class="row top-buffer">
 
-	</div>
+    <% @categories.take(6).drop(3).each do |cat| %>
+      <div class="col-lg-4">
+        <ul class="list-group card">
+          <li class="list-group-item active"><%= t(cat[:name]) %></li>
+          <% Place.where({category_id: cat[:id], user_id: current_user.id}).each do |place| %>
+            <% if !place.nil? && DateTime.now.to_date.to_s < place.date.to_s %>
+              <%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
+  </div>
+
+  <div class="row top-buffer">
+
+    <% @categories.take(9).drop(6).each do |cat| %>
+      <div class="col-lg-4">
+        <ul class="list-group card">
+          <li class="list-group-item active"><%= t(cat[:name]) %></li>
+          <% Place.where({category_id: cat[:id], user_id: current_user.id}).each do |place| %>
+            <% if DateTime.now.to_date.to_s < place.date.to_s %>
+              <%= link_to place[:name], place_path(place.id), :class => 'list-group-item list-group-item-action' %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  </div>
+<br>
+  <div>
+    <h3>История ваших прошедших мероприятий</h3><br>
+    <table class="table table-hover table-striped table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Время посещения</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Адрес</th>
+      </tr>
+      </thead>
+      <% Place.where({user_id: current_user.id}).order(:date).each do |place| %>
+        <% if DateTime.now.to_date.to_s > place.date.to_s %>
+          <tr>
+            <td><%= link_to place[:name], place_path(place.id) %></td>
+            <td><%= link_to place[:date], place_path(place.id) %></td>
+            <td><%= link_to place.category[:name], place_path(place.id) %></td>
+            <td><%= link_to place[:address], place_path(place.id) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
 </div>
